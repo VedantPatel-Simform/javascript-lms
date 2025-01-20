@@ -182,3 +182,43 @@ console.log("10" == 10);  // true, string "10" is coerced to number 10 before co
 console.log(typeof undefined); // undefined 
 console.log(typeof null); // object
 ```
+
+### Differences between `var`, `let`, and `const`
+
+| Feature            | `var`                                  | `let`                       | `const`                     |
+| ------------------ | -------------------------------------- | --------------------------- | --------------------------- |
+| **Scope**          | Function-scoped                        | Block-scoped                | Block-scoped                |
+| **Hoisting**       | Hoisted and initialized to `undefined` | Hoisted but not initialized | Hoisted but not initialized |
+| **Re-declaration** | Allowed                                | Not allowed                 | Not allowed                 |
+| **Re-assignment**  | Allowed                                | Allowed                     | Not allowed                 |
+
+### Examples
+
+#### `var`
+
+```javascript
+function exampleVar() {
+  console.log(a); // undefined
+  var a = 10;
+  console.log(a); // 10
+}
+exampleVar();
+```
+#### `let`
+```javascript
+function exampleLet() {
+  // console.log(b); // ReferenceError: b is not defined
+  let b = 20;
+  console.log(b); // 20
+}
+exampleLet();
+```
+#### `const`
+```javascript
+function exampleConst() {
+  const c = 30;
+  // c = 40; // TypeError: Assignment to constant variable.
+  console.log(c); // 30
+}
+exampleConst();
+```
