@@ -262,3 +262,60 @@ console.log(String(true) + ' is true'); // 'true is true' (conversion: boolean t
 console.log(Boolean(0)); // false (conversion: number 0 is explicitly converted to false)
 console.log(!0); // true (coercion: using ! coerces 0 to false and then negates it to true)
 ```
+
+### Operators in JavaScript
+
+#### 1. Arithmetic Operators
+These operators perform basic arithmetic operations.
+
+| Operator | Description        | Example        |
+|----------|--------------------|----------------|
+| `+`      | Addition           | `5 + 3` → `8`  |
+| `-`      | Subtraction        | `5 - 3` → `2`  |
+| `*`      | Multiplication     | `5 * 3` → `15` |
+| `/`      | Division           | `6 / 3` → `2`  |
+| `%`      | Modulus (Remainder)| `5 % 3` → `2`  |
+| `**`     | Exponentiation     | `2 ** 3` → `8` |
+
+#### 2. Comparison Operators
+These operators compare two values and return a boolean result.
+
+| Operator | Description        | Example        |
+|----------|--------------------|----------------|
+| `==`     | Equal to           | `5 == '5'` → `true` |
+| `===`    | Strict Equal to    | `5 === '5'` → `false` |
+| `!=`     | Not Equal to       | `5 != 3` → `true` |
+| `!==`    | Strict Not Equal to| `5 !== 3` → `true` |
+| `>`      | Greater than       | `5 > 3` → `true` |
+| `<`      | Less than          | `5 < 3` → `false` |
+| `>=`     | Greater than or equal to | `5 >= 3` → `true` |
+| `<=`     | Less than or equal to    | `5 <= 3` → `false` |
+
+#### 3. Logical Operators
+These operators are used to combine multiple conditions.
+
+| Operator | Description        | Example               |
+|----------|--------------------|-----------------------|
+| `&&`     | Logical AND        | `(5 > 3) && (8 > 5)` → `true` |
+| `\|\|`   | Logical OR         | `(5 > 3) \|\| (2 > 3)` → `true` | 
+| `!`      | Logical NOT        | `!(5 > 3)` → `false`  |
+
+#### 4. Assignment Operators
+These operators are used to assign values to variables.
+
+| Operator | Description        | Example         |
+|----------|--------------------|-----------------|
+| `=`      | Assignment         | `let x = 5;`    |
+| `+=`     | Add and assign     | `x += 5;` → `x = x + 5` |
+| `-=`     | Subtract and assign| `x -= 5;` → `x = x - 5` |
+| `*=`     | Multiply and assign| `x *= 5;` → `x = x * 5` |
+| `/=`     | Divide and assign  | `x /= 5;` → `x = x / 5` |
+| `%=`     | Modulus and assign | `x %= 5;` → `x = x % 5` |
+
+#### 5. Ternary Operator
+The ternary operator is a shorthand for `if-else` statements.
+
+| Syntax                | Example                      |
+|-----------------------|------------------------------|
+| `condition ? expr1 : expr2` | `let result = (5 > 3) ? 'Yes' : 'No';` → `'Yes'` |
+
