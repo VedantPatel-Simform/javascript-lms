@@ -216,6 +216,7 @@ exampleLet();
 #### `const`
 ```javascript
 function exampleConst() {
+const a; //Syntax Error: missing initializer
   const c = 30;
   // c = 40; // TypeError: Assignment to constant variable.
   console.log(c); // 30
