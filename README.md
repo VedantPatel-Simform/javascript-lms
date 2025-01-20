@@ -72,7 +72,7 @@
 
 ---
 
-### 1. **Variables and Data Types**
+### **Variables and Data Types**
 
 - **Primitive Types**: `string`, `number`, `boolean`, `undefined`, `null`, `symbol`, `bigint`.
 - **Non-Primitive Types**: `object` (including arrays and functions).
@@ -85,4 +85,100 @@ let isActive = true;    // boolean
 let user = { name, age }; // object
 let largeNumber = 1234567890123456789012345678901234567890n; // bigInt
 let sym = Symbol('description'); // Represents a unique identifier
+```
+- **Non-Primitive Types**
+  - Object: Collection of key-value pairs.
+  - Array: Ordered list of values.
+  - Function: Reusable code block.
+  - Date: Date and time representation.
+  - RegExp: Pattern for matching strings.
+
+```javascript
+//non-primitive type
+
+const obj = {id : 1}
+const arr = [1,2,3,4]
+function abc(){} 
+```
+### Tricky JavaScript Interview Questions with Answers
+
+```javascript
+// 1. Check if NaN is strictly equal to undefined
+console.log(NaN === undefined);  // false, NaN and undefined are different types and values
+
+// 2. Check if NaN is loosely equal to undefined
+console.log(NaN == undefined);  // false, NaN is not loosely equal to undefined
+
+// 3. Check if null is loosely equal to NaN
+console.log(null == NaN);  // false, null and NaN are different values
+
+// 4. Check if null is strictly equal to NaN
+console.log(null === NaN);  // false, null and NaN are different types
+
+// 5. Check if null is loosely equal to undefined
+console.log(null == undefined);  // true, null and undefined are loosely equal
+
+// 6. Check if null is strictly equal to undefined
+console.log(null === undefined);  // false, null is an object and undefined is a type
+
+// 7. Check if null is strictly equal to null
+console.log(null === null);  // true, null is strictly equal to null
+
+// 8. Check if undefined is strictly equal to undefined
+console.log(undefined === undefined);  // true, both are of the same type and value
+
+// 9. Check if NaN is strictly equal to NaN
+console.log(NaN === NaN);  // false, NaN is not equal to itself in JavaScript
+
+// 10. Check if 0 is loosely equal to false
+console.log(0 == false);  // true, 0 is loosely equal to false because of type coercion
+
+// 11. Check if "" (empty string) is loosely equal to false
+console.log("" == false);  // true, empty string is loosely equal to false
+
+// 12. Check if 0 is strictly equal to false
+console.log(0 === false);  // false, 0 is a number and false is a boolean
+
+// 13. Check if an empty object is loosely equal to null
+console.log({} == null);  // false, an empty object is not equal to null
+
+// 14. Check if an empty object is strictly equal to null
+console.log({} === null);  // false, objects and null are different types
+
+// 15. Check if an array is loosely equal to an object
+console.log([] == {});  // false, empty array and empty object are different
+
+// 16. Check if an empty array is loosely equal to false
+console.log([] == false);  // true, empty array is loosely equal to false
+
+// 17. Check if an empty array is strictly equal to false
+console.log([] === false);  // false, array and boolean are different types
+
+// 18. Check if '5' + 1 results in a number or string
+console.log("5" + 1);  // "51", string concatenation happens, result is a string
+
+// 19. Check if '5' - 1 results in a number or string
+console.log("5" - 1);  // 4, string '5' is coerced to a number for subtraction
+
+// 20. Check if 1 / 0 results in Infinity
+console.log(1 / 0);  // Infinity, dividing by zero results in Infinity in JavaScript
+
+// 21. Check if typeof NaN is 'number'
+console.log(typeof NaN);  // "number", NaN is considered a type 'number' in JavaScript
+
+// 22. Check if undefined is equal to null using strict equality
+console.log(undefined === null);  // false, undefined and null are different types
+
+// 23. Check if +undefined results in NaN
+console.log(+undefined);  // NaN, unary plus attempts to convert undefined to a number, results in NaN
+
+// 24. Check if 'true' is loosely equal to true
+console.log("true" == true);  // false, string "true" is not the same as boolean true
+
+// 25. Check if a string with a number in it ('10') is loosely equal to a number (10)
+console.log("10" == 10);  // true, string "10" is coerced to number 10 before comparison
+
+// 26. type of null & undefined
+console.log(typeof undefined); // undefined 
+console.log(typeof null); // object
 ```
