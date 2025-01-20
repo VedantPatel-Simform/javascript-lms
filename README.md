@@ -223,3 +223,45 @@ const a; //Syntax Error: missing initializer
 }
 exampleConst();
 ```
+### Type coersion and Type conversion
+**Type coercion**, refers to the automatic or implicit conversion of values from one data type to another (such as strings to numbers). 
+
+For example:
+```javascript
+console.log('5' - 3); // 2 (string '5' is converted to number 5)
+```
+**Type conversion**, on the other hand, is the explicit transformation of values from one data type to another by the developer using methods or operators:
+
+```javascript
+console.log(Number('5') + 3); // 8 (string '5' is explicitly converted to number 5)
+```
+
+# Type Coercion and Type Conversion in JavaScript
+
+## Combined Examples in One Code Block
+
+```javascript
+// String to Number Coercion vs Conversion
+console.log('5' - 2); // 3 (coercion: string '5' is coerced to number 5)
+console.log(Number('5') - 2); // 3 (conversion: string '5' is explicitly converted to number 5)
+
+// Number to String Coercion vs Conversion
+console.log('5' + 2); // '52' (coercion: number 2 is coerced to string '2')
+console.log(String(5) + 2); // '52' (conversion: number 5 is explicitly converted to string '5')
+
+// Boolean to Number Coercion vs Conversion
+console.log(true + 1); // 2 (coercion: boolean true is coerced to number 1)
+console.log(Number(true) + 1); // 2 (conversion: boolean true is explicitly converted to number 1)
+
+// Null to Number Coercion vs Conversion
+console.log(null + 5); // 5 (coercion: null is coerced to number 0)
+console.log(Number(null) + 5); // 5 (conversion: null is explicitly converted to number 0)
+
+// Boolean to String Coercion vs Conversion
+console.log(true + ' is true'); // 'true is true' (coercion: boolean true is coerced to string 'true')
+console.log(String(true) + ' is true'); // 'true is true' (conversion: boolean true is explicitly converted to string 'true')
+
+// Number to Boolean Coercion vs Conversion
+console.log(Boolean(0)); // false (conversion: number 0 is explicitly converted to false)
+console.log(!0); // true (coercion: using ! coerces 0 to false and then negates it to true)
+```
