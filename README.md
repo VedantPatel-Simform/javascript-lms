@@ -236,10 +236,7 @@ console.log('5' - 3); // 2 (string '5' is converted to number 5)
 console.log(Number('5') + 3); // 8 (string '5' is explicitly converted to number 5)
 ```
 
-# Type Coercion and Type Conversion in JavaScript
-
-## Combined Examples in One Code Block
-
+#### examples
 ```javascript
 // String to Number Coercion vs Conversion
 console.log('5' - 2); // 3 (coercion: string '5' is coerced to number 5)
