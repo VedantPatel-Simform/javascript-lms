@@ -516,3 +516,183 @@ condition ? expressionIfTrue : expressionIfFalse;
 - switch statement is used for multiple conditions based on a single expression.
 
 - Ternary operator is a shorthand for if...else statements.
+
+## Functions in JS
+
+A function in JS is a block of reusable code designed to perform a specific task. Functions help in organizing code, making it more readable, and promoting code reuse.
+
+### 1. Function Declaration
+A function declaration is the classic way to define a function in JavaScript.
+
+```javascript
+function greet(name) {
+  console.log(`Hello, ${name}!`);
+}
+greet("Alice"); // Output: Hello, Alice!
+```
+**Important Points:**
+- **Hoisting**: Function declarations are hoisted entirely. This means you can call the function before it's defined in the code.
+- It’s a straightforward, reusable way to define functions.
+
+### 2. Function Expression
+A function expression involves assigning a function to a variable. It can be anonymous or named.
+
+```javascript
+const greet = function(name) {
+  console.log(`Hello, ${name}!`);
+};
+
+greet("Bob"); // Output: Hello, Bob!
+```
+**Important Points:**
+
+- Function expressions are **not hoisted**. The function can only be called after it's assigned to the variable.
+- Commonly used for callbacks, anonymous functions, or assigning functions to variables.
+- In case of declaring with `var`, it is undefined untill it is assigned to the function.
+- In case of `let` and `const`. It gives `ReferenceError` when it is accessed before it is assigned.
+
+### 3. Arrow Functions
+Arrow functions provide a more concise syntax, and they don't have their own this — they inherit it from the surrounding context.
+
+```javascript
+const greet = (name) => {
+  console.log(`Hello, ${name}!`);
+};
+greet("Charlie"); // Output: Hello, Charlie!
+```
+**Important Points:**
+
+- Shorter syntax: Arrow functions are syntactically cleaner, especially for short functions.
+- No this binding: this refers to the context of where the arrow function was defined, not where it’s invoked.
+- Implicit return: When the function body is a single expression, the return keyword is implied.
+
+```javascript
+const add = (a, b) => a + b;
+```
+### 4. Parameters and Arguments
+- Parameters are the names defined in the function signature.
+- Arguments are the values passed to the function when it's called.
+
+```javascript
+function add(a, b) {
+  return a + b;
+}
+add(2, 3); // Arguments: 2 and 3
+```
+**Important Points:**
+
+- **Rest Parameters**: You can use the `...` syntax to capture all arguments into an array.
+
+```javascript
+function sum(...numbers) {
+  return numbers.reduce((total, num) => total + num, 0);
+}
+console.log(sum(1, 2, 3)); // Output: 6
+```
+- **Arguments object**: For traditional functions, there’s an arguments object which holds all passed arguments, even if they aren't defined as parameters. 
+- However, **arrow functions do not have this object**.
+```javascript
+function showArguments() {
+    console.log(arguments);
+    console.log(...arguments);
+    console.log(arguments[0]);
+}
+showArguments(1, 2, 3, 'hello');
+
+//Output:
+//[Arguments] { '0': 1, '1': 2, '2': 3, '3': 'hello' }
+//1 2 3 hello
+//1
+```
+### 5. Default Parameters
+JavaScript allows you to specify default values for parameters if they’re not provided.
+
+```javascript
+function greet(name = "Guest") {
+  console.log(`Hello, ${name}!`);
+}
+greet();         // Output: Hello, Guest!
+greet("Alice");  // Output: Hello, Alice!
+```
+**Important Points:**
+
+Default parameters are evaluated when the function is called, so they can even be expressions.
+```javascript
+function add(a, b = a + 1) {
+  return a + b;
+}
+```
+
+## IIFE (Immediately Invoked Function Expressions)
+
+### Why and When to Use IIFE?
+
+#### 1. Avoid Global Namespace Pollution:
+The primary use case of an IIFE is to avoid polluting the global namespace. Variables defined inside an IIFE are not accessible outside of it, helping maintain cleaner and more modular code.
+
+**Interview Insight**: You should highlight how IIFEs prevent variable leakage and keep global variables safe from accidental overwrites.
+
+#### 2. Encapsulation (Creating a Module):
+IIFEs are widely used in the **Module Pattern**, where the internal implementation details are hidden and only the required public methods or variables are exposed.
+
+**Interview Insight**: Emphasize how IIFEs allow developers to create isolated private states for variables and methods, ideal for data encapsulation.
+
+#### 3. Initialization Code:
+An IIFE is great for running initialization logic that should only execute once and not interfere with the rest of the program.
+
+#### 4. Simulating Block Scope (Prior to ES6):
+Before ES6 introduced `let` and `const`, IIFEs were a common workaround to create block-scoped variables using `var`. This helped avoid issues like variable hoisting and leaks in the global scope.
+
+#### 5. Functional Programming & Composition:
+IIFEs are useful in **functional programming** to compose functions or to run code in a self-contained manner, reducing side effects and dependencies.
+
+### Interview Questions You Might Face About IIFE:
+
+1. **What’s the difference between a function declaration and a function expression?**
+   - A **function declaration** is hoisted to the top of its scope, while a **function expression** (like an IIFE) is not hoisted and is invoked immediately after being defined.
+
+2. **Can an IIFE accept arguments?**
+   - Yes, you can pass parameters to an IIFE like any other function.
+
+3. **How does IIFE help in avoiding global scope pollution?**
+   - By creating a **local function scope**, IIFE ensures that any variables declared within it are not accessible from outside, which prevents accidental global variable overwrites or conflicts.
+
+4. **When would you not use an IIFE?**
+   - IIFEs are less commonly needed in modern JavaScript with block-scoping introduced by `let` and `const` in ES6. But they are still helpful for **isolated initialization logic** or in situations where you need to execute code immediately but don’t want to create unnecessary variables in the global scope.
+
+5. **Is IIFE still relevant in ES6+ with block-scoping?**
+   - While ES6 introduced `let` and `const` for block-scoping, IIFEs are still useful for **encapsulating logic**, **creating private variables**, or **organizing code in modular patterns**.
+```javascript
+// 1. Basic IIFE (Anonymous Function)
+(function() {
+  console.log("This is a basic IIFE!");
+})();
+
+// 2. IIFE with Parameters
+(function(name) {
+  console.log("Hello, " + name + "!");
+})("Alice");
+
+// 3. Named IIFE
+(function myIIFE() {
+  console.log("This is a named IIFE.");
+})();
+
+// 4. IIFE Returning a Value
+var result = (function(a, b) {
+  return a + b;
+})(5, 10);
+console.log("Result of addition:", result);  // Output: Result of addition: 15
+
+// 5. IIFE for Initialization
+(function() {
+  var apiKey = "12345";  // Private initialization logic
+  console.log("API initialized with key:", apiKey);
+})();
+
+// 6. IIFE for Simulating Block Scope (Before ES6)
+(function() {
+  var blockScopedVar = "I am block-scoped!";
+  console.log(blockScopedVar);  // Output: I am block-scoped!
+})();
+```
