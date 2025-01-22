@@ -623,6 +623,19 @@ function add(a, b = a + 1) {
 }
 ```
 
+### Function declaration vs Expression
+| Feature                     | **Function Declaration**                                   | **Function Expression**                                      |
+|-----------------------------|-------------------------------------------------------------|--------------------------------------------------------------|
+| **Definition**               | A function defined using the `function` keyword outside of any expression. | A function defined as part of an expression, typically assigned to a variable. |
+| **Syntax**                   | `function myFunction() { ... }`                             | `var myFunction = function() { ... };`                        |
+| **Hoisting**                 | **Hoisted**: Function declarations are hoisted to the top of their scope, making them accessible even before they are defined. | **Not Hoisted**: Function expressions are not hoisted, meaning they are accessible only after the definition. |
+| **Usage**                    | Can be called before it appears in the code.                | Must be assigned to the variable before being called.         |
+| **Example**                  | `function greet() { console.log("Hello!"); }`               | `var greet = function() { console.log("Hello!"); };`         |
+| **Can be Anonymous**         | No, the function must have a name.                          | Yes, function expressions can be anonymous (unnamed).         |
+| **Can Be Used for Recursion**| Yes, can be used recursively, since it’s hoisted.            | Not directly, because it’s assigned to a variable and the variable is not hoisted. |
+| **Type**                     | It’s a declaration and is a part of the **JavaScript syntax**. | It’s an expression and is evaluated at runtime.               |
+
+
 ## IIFE (Immediately Invoked Function Expressions)
 
 ### Why and When to Use IIFE?
