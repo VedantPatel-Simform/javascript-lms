@@ -72,7 +72,129 @@
 
 ---
 
-### **Variables and Data Types**
+## JavaScript Engine Overview
+   - JavaScript is executed by engines like V8, which consist of two main components:
+     - **Memory Heap**: Where memory allocation happens.
+     - **Call Stack**: Where the execution context is managed.
+
+### Execution Phases
+JavaScript execution can be broken down into two main phases:
+
+#### 1. Memory Allocation Phase (Creation Phase)
+   - **Creation of Global Execution Context**:
+     - The JavaScript engine first creates the **Global Execution Context**.
+     - It includes two components:
+       - **Memory Component (Variable Environment)**: 
+         - All variables and functions are stored in memory.
+         - Variables are initialized with `undefined`, and function declarations are fully hoisted.
+       - **Code Component (Thread of Execution)**: 
+         - The engine prepares to execute the code line by line.
+   
+   **Hoisting** occurs here, where variables and functions are moved to the top of their scope in memory.
+
+#### 2. Code Execution Phase
+   - After memory allocation, the code execution phase begins:
+     - **Execution Context**: JavaScript starts executing code line by line.
+     - Variables are assigned actual values.
+     - Function calls create new **execution contexts**.
+
+### Execution Context
+Each function call creates a new execution context, which is added to the **Call Stack**.
+
+- **Components of an Execution Context**:
+  - **Variable Environment**: Memory allocation for variables within the function.
+  - **Lexical Environment**: Memory and environment for the outer variables accessible to the function.
+  - **`this` Binding**: The value of `this` in the context.
+
+When a function is called, it stores its local variables and parameters in the execution context.
+
+### Call Stack
+   - The **Call Stack** is used to manage execution contexts.
+   - When a function is called, its execution context is pushed onto the call stack.
+   - Once the function execution is complete, its context is popped from the stack.
+
+The call stack manages the order of function execution, pushing and popping contexts as functions are called and return.
+
+### Asynchronous Code and Event Loop
+   - JavaScript handles asynchronous operations using the **Event Loop** and **Task Queue**.
+   - Asynchronous code (e.g., timers, Promises) is placed in the task queue, and once the call stack is clear, the event loop pushes tasks from the queue to the stack for execution.
+
+The event loop continuously checks the call stack and the task queue, ensuring that asynchronous operations are executed after the synchronous code has completed.
+
+### Summary
+   - **Memory Allocation Phase**: Variables are hoisted, functions are stored.
+   - **Code Execution Phase**: Code runs line by line; function calls are managed using the call stack.
+   - **Call Stack**: Tracks function calls and execution contexts.
+   - **Event Loop**: Handles asynchronous tasks by moving them from the task queue to the call stack.
+
+## Hoisting in JS
+
+In JavaScript, hoisting refers to the behavior where variable and function declarations are moved to the top of their containing scope during the compile phase, before the code is executed. This can sometimes lead to unexpected results if you're not aware of how it works.
+
+To break it down:
+
+### **Variable Hoisting:**
+
+- var declarations are hoisted, but only the declaration, not the assignment. They are hoisted with `undefined` value untill assignment.
+- This means the variable is accessible before the point it's initialized, but its value is undefined until the assignment happens.
+- let and const are also hoisted, but with a key difference: they are in a "temporal dead zone" from the start of the block until they are initialized. Accessing them before initialization results in a ReferenceError.
+  
+Example with var:
+
+```javascript
+console.log(a); // undefined
+var a = 5;
+console.log(a); // 5
+```
+Example with let/const:
+```javascript
+console.log(b); // ReferenceError: Cannot access 'b' before initialization
+let b = 10;
+```
+#### TDZ (Temporal Dead Zone) for `let` and `const`
+TDZ (Temporal Dead Zone) refers to the period between the entering of a scope and the initialization of variables declared with let and const. During this time, accessing those variables results in a ReferenceError.
+
+**Key Points:**
+Only let and const have TDZ; var does not.
+Variables are hoisted but not initialized, so they cannot be accessed until their declaration is evaluated.
+It prevents accidental use of uninitialized variables, improving code reliability.
+Example:
+```javascript
+console.log(x); // ReferenceError: Cannot access 'x' before initialization
+let x = 10;
+```
+**Why It Matters:**
+TDZ ensures variables are not used before they are assigned, avoiding bugs and enhancing predictability in JavaScript.
+
+Like, if the block is starting from line 5 and the variable is declared with `let` on line number 9, then the lines 5-8 are TDZ. Between lines 5 and 8, trying to access x will result in a `ReferenceError` because the variable is not initialized yet.
+
+### **Function Hoisting:**
+
+Function declarations are hoisted in their entirety, meaning you can call the function before it's defined in the code.
+Function expressions (including arrow functions) are not hoisted. Only the variable is hoisted, not the function assignment.
+Example with function declaration:
+
+```javascript
+myFunction(); // "Hello"
+function myFunction() {
+    console.log("Hello");
+}
+```
+Example with function expression:
+
+```javascript
+greet(); // TypeError: greet is not a function
+var greet = function() {
+    console.log("Hello");
+};
+```
+#### **Key takeaways for the interview:**
+- var hoists only declarations, and the value is undefined until assignment.
+- let/const hoist the declarations but remain in the temporal dead zone until initialized.
+- Function declarations are hoisted fully (you can call them before declaration), whereas function expressions (including arrow functions) are only hoisted by the variable declaration.
+- Understanding hoisting is essential for avoiding subtle bugs and writing cleaner, more predictable code in JavaScript.
+
+## **Variables and Data Types**
 
 - **Primitive Types**: `string`, `number`, `boolean`, `undefined`, `null`, `symbol`, `bigint`.
 - **Non-Primitive Types**: `object` (including arrays and functions).
@@ -263,7 +385,7 @@ console.log(Boolean(0)); // false (conversion: number 0 is explicitly converted 
 console.log(!0); // true (coercion: using ! coerces 0 to false and then negates it to true)
 ```
 
-### Operators in JavaScript
+## Operators in JavaScript
 
 #### 1. Arithmetic Operators
 These operators perform basic arithmetic operations.
@@ -319,3 +441,78 @@ The ternary operator is a shorthand for `if-else` statements.
 |-----------------------|------------------------------|
 | `condition ? expr1 : expr2` | `let result = (5 > 3) ? 'Yes' : 'No';` → `'Yes'` |
 
+## Conditional Statements in JS
+
+- Conditional statements in JavaScript are used to perform different actions based on different conditions. JavaScript supports several types of conditional statements to control the flow of execution based on specific conditions.
+
+### **if Statement**
+
+The if statement is used to execute a block of code only if a specified condition is true.
+
+Syntax:
+```javascript
+if (condition) {
+    // block of code to be executed if the condition is true
+}
+```
+### **if...else Statement**
+
+The if...else statement is used to execute one block of code if the condition is true and another block of code if the condition is false.
+
+Syntax:
+```javascript
+if (condition) {
+    // block of code to be executed if the condition is true
+} else {
+    // block of code to be executed if the condition is false
+}
+```
+### **if...else if...else Statement**
+
+The if...else if...else statement is used to test multiple conditions. If the first condition is false, the next else if statement is checked, and so on. If none of the conditions are true, the else block is executed.
+
+Syntax:
+```javascript
+if (condition1) {
+    // block of code to be executed if condition1 is true
+} else if (condition2) {
+    // block of code to be executed if condition2 is true
+} else {
+    // block of code to be executed if none of the conditions are true
+}
+```
+### **switch Statement**
+
+The switch statement is used to perform different actions based on different conditions. It is a more convenient way to test for multiple values of a single expression.
+
+Syntax:
+```javascript
+switch (expression) {
+    case value1:
+        // block of code to be executed if expression === value1
+        break;
+    case value2:
+        // block of code to be executed if expression === value2
+        break;
+    default:
+        // block of code to be executed if none of the cases match
+}
+```
+### **Ternary Operator**
+
+The ternary operator is a shorthand way to write conditional statements. It is used as a one-liner if-else statement.
+
+Syntax:
+```javascript
+condition ? expressionIfTrue : expressionIfFalse;
+```
+### **Summary**
+
+- if statement executes code if a condition is true.
+- if...else statement executes one block of code if a condition is true, and another if it is false.
+
+- if...else if...else statement checks multiple conditions.
+
+- switch statement is used for multiple conditions based on a single expression.
+
+- Ternary operator is a shorthand for if...else statements.
