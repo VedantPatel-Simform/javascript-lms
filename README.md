@@ -709,3 +709,51 @@ console.log("Result of addition:", result);  // Output: Result of addition: 15
   console.log(blockScopedVar);  // Output: I am block-scoped!
 })();
 ```
+## Closure in JavaScript
+
+A closure in JavaScript is a function that "remembers" its lexical scope, even when the function is executed outside that scope. This means that an inner function can access variables from its outer function even after the outer function has completed execution.
+
+Closures are created when a function is defined inside another function, and they allow the inner function to access the variables and parameters of the outer function. This is particularly useful for data encapsulation, maintaining state, and creating function factories or callback functions.
+
+For example, closures are commonly used for:
+- Data privacy (keeping variables private)
+- Callbacks and asynchronous operations (e.g., event handlers or setTimeout)
+- Function factories (where the inner function retains access to parameters passed to the outer function)
+Usecase:
+- Closures allow you to create private variables that cannot be accessed directly from outside the function, but can be accessed and modified by inner functions. This is similar to private methods or properties in object-oriented languages.
+
+Example:
+```javascript
+function counter(abc){
+    let count = 0;
+    return {
+        increment: () => {
+            count++;
+            abc++;
+        },
+        getValue: function () {
+            console.log(count, " ", abc);
+        }
+    }
+}
+let count = 1000
+const obj = counter(20)
+
+obj.increment()
+obj.getValue()
+
+obj.increment()
+obj.getValue()
+
+obj.increment()
+obj.getValue()
+
+obj.increment()
+obj.getValue()
+
+// 1   21
+// 2   22
+// 3   23
+// 4   24
+```
+  
